@@ -107,7 +107,7 @@ const MentalHealthSupport: React.FC = () => {
   const sendMessageToBackend = async (message: string) => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/mental-health-chat', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:3001/api'}/mental-health-chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

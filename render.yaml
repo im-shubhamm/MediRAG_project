@@ -1,0 +1,35 @@
+services:
+  # Backend API Service
+  - type: web
+    name: medirag-backend
+    runtime: node
+    region: oregon
+    plan: free
+    rootDir: healthcare-plus/backend
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+
+  # Frontend Static Site
+  - type: web
+    name: medirag-frontend
+    runtime: static
+    region: oregon
+    plan: free
+    rootDir: healthcare-plus/frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

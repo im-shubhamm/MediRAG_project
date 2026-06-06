@@ -1,7 +1,7 @@
 // src/api/appointmentApi.ts
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3001/api';
+const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
 
 export const getAppointments = () => axios.get(`${BASE_URL}/appointments`);
 export const createAppointment = (appointmentData: any) => axios.post(`${BASE_URL}/appointments`, appointmentData);

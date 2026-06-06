@@ -49,7 +49,7 @@ const HealthPlans: React.FC = () => {
     setHealthPlan(null);
 
     try {
-      const response = await fetch('http://localhost:3001/api/HealthPlans', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:3001/api'}/HealthPlans`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

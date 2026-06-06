@@ -35,7 +35,7 @@ const ImageAnalysisPage: React.FC = () => {
     if (file) formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:3001/api/analyze-image', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:3001/api'}/analyze-image`, {
         method: 'POST',
         body: formData,
       });
